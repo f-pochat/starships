@@ -5,15 +5,15 @@ fun createClassicGame(configSettings: ConfigSettings): Game {
 }
 
 fun createClassicInitialGameState(): GameState {
-    return GameState(KeyState.PLAY, listOf())
+    return GameState(KeyState.PLAY, listOf(createStarship(Position(200.0, 200.0), 10, createGun(1, 1))))
 }
 
 fun createStarship(position: Position, lives: Int, gun: Gun): Starship {
     return Starship(
-        String.hashCode().toString(),
+        "spaceship",
         position,
         lives,
-        MovementVector(0.0, 0.0),
+        MovementVector(0.0, 180.0),
         gun
     )
 }

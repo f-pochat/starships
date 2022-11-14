@@ -1,6 +1,7 @@
 package models
 
 data class Bullet(
+    val bulletId: String,
     val position: Position,
     val damage: Int,
     val movementVector: MovementVector
@@ -10,4 +11,19 @@ data class Bullet(
     }
 
     override fun move(): Movable = copy(position = position.move(movementVector))
+    override fun getId(): String {
+        return bulletId
+    }
+
+    override fun getX(): Double {
+        return position.x
+    }
+
+    override fun getY(): Double {
+        return position.y
+    }
+
+    override fun getRotation(): Double {
+        return movementVector.rotation
+    }
 }
