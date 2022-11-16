@@ -7,8 +7,8 @@ data class Position(
     val x: Double,
     val y: Double
 ) {
-    fun move(movementVector: MovementVector): Position = copy(
-        x = x + movementVector.speed * -sin(Math.toRadians(movementVector.rotation)),
-        y = y + movementVector.speed * cos(Math.toRadians(movementVector.rotation))
+    fun move(movementVector: MovementVector, deltaTime: Double): Position = copy(
+        x = x + (movementVector.speed * -sin(Math.toRadians(movementVector.rotation)) * deltaTime / 100000),
+        y = y + (movementVector.speed * cos(Math.toRadians(movementVector.rotation)) * deltaTime / 100000)
     )
 }

@@ -10,7 +10,7 @@ data class Bullet(
         return this // Check how to do to delete the bullet
     }
 
-    override fun move(): Movable = copy(position = position.move(movementVector))
+    override fun move(deltaTime: Double): Movable = copy(position = position.move(movementVector, deltaTime))
     override fun getId(): String {
         return bulletId
     }

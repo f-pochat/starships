@@ -6,7 +6,7 @@ data class Asteroid(
     val position: Position,
     val movementVector: MovementVector
 ) : Collidable, Movable {
-    override fun move(): Asteroid = copy(position = position.move(movementVector))
+    override fun move(deltaTime: Double): Asteroid = copy(position = position.move(movementVector, deltaTime))
     override fun getId(): String {
         return asteroidId
     }

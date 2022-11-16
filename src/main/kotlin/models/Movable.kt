@@ -1,7 +1,7 @@
 package models
 
 sealed interface Movable {
-    fun move(): Movable
+    fun move(deltaTime: Double): Movable
     fun getId(): String
 
     fun getX(): Double

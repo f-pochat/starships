@@ -1,50 +1,52 @@
 package main
 
-import adapters.GameAdapter
-import createClassicInitialGameState
+import WINDOW_HEIGHT
+import WINDOW_WIDTH
 import edu.austral.ingsis.starships.ui.*
-import edu.austral.ingsis.starships.ui.ElementColliderType.*
+import factories.createClassicInitialGameState
 import javafx.application.Application
 import javafx.application.Application.launch
 import javafx.scene.Scene
-import javafx.scene.input.KeyCode
 import javafx.stage.Stage
+import services.GameService
 
 fun main() {
     launch(Starships::class.java)
 }
 
-class Starships() : Application() {
+class Starships : Application() {
     private val imageResolver = CachedImageResolver(DefaultImageResolver())
     private val facade = ElementsViewFacade(imageResolver)
     private val keyTracker = KeyTracker()
-    private var adapter = GameAdapter(createClassicInitialGameState())
+    private var adapter = GameService(createClassicInitialGameState())
 
     override fun start(primaryStage: Stage) {
-        facade.elements["spaceship"] = adapter.starshipToStarshipUI()
+        adapter = adapter.addElements(facade.elements)
 
         facade.timeListenable.addEventListener(object : EventListener<TimePassed> {
             override fun handle(event: TimePassed) {
-                adapter = adapter.onKeyFrame().adaptElements(facade.elements)
+                adapter = adapter.onKeyFrame(event.currentTimeInSeconds - event.secondsSinceLastTime).adaptElements(facade.elements)
             }
         })
 
         keyTracker.keyPressedListenable.addEventListener(object : EventListener<KeyPressed> {
             override fun handle(event: KeyPressed) {
-                adapter = adapter.keyPressed(event)
+                adapter = adapter.keyPressed(event).addElements(facade.elements)
             }
         })
 //        facade.collisionsListenable.addEventListener(CollisionListener())
 //     keyTracker.keyPressedListenable.addEventListener(KeyPressedListener(starship))
-
-        val scene = Scene(facade.view)
+        val root = facade.view
+        root.id = "pane"
+        val scene = Scene(root)
         keyTracker.scene = scene
-
+        scene.stylesheets.add(this::class.java.classLoader.getResource("styles.css")?.toString())
         primaryStage.scene = scene
-        primaryStage.height = 800.0
-        primaryStage.width = 800.0
+        primaryStage.height = WINDOW_HEIGHT
+        primaryStage.width = WINDOW_WIDTH
 
         facade.start()
+        facade.showCollider.set(false)
         keyTracker.start()
         primaryStage.show()
     }
@@ -58,17 +60,5 @@ class Starships() : Application() {
 class CollisionListener() : EventListener<Collision> {
     override fun handle(event: Collision) {
         println("${event.element1Id} ${event.element2Id}")
-    }
-}
-
-class KeyPressedListener(private val starship: ElementModel) : EventListener<KeyPressed> {
-    override fun handle(event: KeyPressed) {
-        when (event.key) {
-            KeyCode.UP -> starship.y.set(starship.y.value - 5)
-            KeyCode.DOWN -> starship.y.set(starship.y.value + 5)
-            KeyCode.LEFT -> starship.x.set(starship.x.value - 5)
-            KeyCode.RIGHT -> starship.x.set(starship.x.value + 5)
-            else -> {}
-        }
     }
 }

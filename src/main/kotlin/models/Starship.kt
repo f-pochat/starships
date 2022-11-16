@@ -23,7 +23,7 @@ data class Starship(
         }
     }
 
-    override fun move(): Starship = copy(position = position.move(movementVector))
+    override fun move(deltaTime: Double): Starship = copy(position = position.move(movementVector, deltaTime))
     override fun getId(): String {
         return starshipId
     }
