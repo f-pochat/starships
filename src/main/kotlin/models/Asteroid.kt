@@ -2,7 +2,7 @@ package models
 
 data class Asteroid(
     val asteroidId: String,
-    val size: Int,
+    val size: Double,
     val position: Position,
     val movementVector: MovementVector
 ) : Collidable, Movable {
@@ -27,7 +27,7 @@ data class Asteroid(
         return when (collider) {
             is Bullet -> copy(size = size - collider.damage)
             is Asteroid -> this
-            is Starship -> this
+            is Starship -> copy(size = 0.0)
             else -> this
         }
     }

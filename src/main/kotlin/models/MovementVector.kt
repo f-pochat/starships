@@ -5,22 +5,22 @@ data class MovementVector(
     val rotation: Double
 ) {
     fun accelerate(): MovementVector {
-        return if (speed < 100) {
-            copy(speed = speed + 15)
+        return if (speed < 300) {
+            copy(speed = speed + 5)
         } else {
             this
         }
     }
 
     fun stop(): MovementVector {
-        return if (speed > -100) {
-            copy(speed = speed - 15)
+        return if (speed > -300) {
+            copy(speed = speed - 5)
         } else {
             this
         }
     }
 
-    fun turnLeft(): MovementVector = copy(rotation = rotation - 10)
-    fun turnRight(): MovementVector = copy(rotation = rotation + 10)
+    fun turnLeft(): MovementVector = copy(rotation = rotation - 1)
+    fun turnRight(): MovementVector = copy(rotation = rotation + 1)
     fun fullStop(): MovementVector = copy(speed = 0.0)
 }

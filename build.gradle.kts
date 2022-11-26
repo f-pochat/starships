@@ -2,7 +2,6 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm") version "1.7.10"
-    id("org.jlleitschuh.gradle.ktlint") version "11.0.0"
     application
     id("org.openjfx.javafxplugin").version("0.0.13")
 }
@@ -11,24 +10,20 @@ group = "org.example"
 version = "1.0-SNAPSHOT"
 
 repositories {
+    // Use Maven Central for resolving dependencies.
     mavenCentral()
     maven {
-        url = uri("https://maven.pkg.github.com/austral-ingsis/chess-ui")
+        url = uri("https://maven.pkg.github.com/austral-ingsis/starship-ui")
         credentials {
-            username = project.findProperty("gpr.user") as String? ?: System.getenv("GITHUB_USER")
-            password = project.findProperty("gpr.key") as String? ?: System.getenv("GITHUB_TOKEN")
+            username = System.getenv("GITHUB_USER")
+            password = System.getenv("GITHUB_TOKEN")
         }
     }
 }
 
 dependencies {
-    testImplementation(kotlin("test"))
+    implementation("edu.austral.ingsis.starships:starships-ui:1.2.0")
     implementation("com.google.code.gson:gson:2.10")
-    implementation("edu.austral.ingsis.starships:starships-ui:1.0.0")
-}
-
-ktlint {
-    disabledRules.set(listOf("no-wildcard-imports"))
 }
 
 tasks.test {
@@ -37,7 +32,7 @@ tasks.test {
 
 javafx {
     version = "18"
-    modules = listOf("javafx.graphics")
+    modules = listOf("javafx.graphics", "javafx.controls")
 }
 
 application {

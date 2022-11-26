@@ -1,0 +1,51 @@
+{
+  "config": {
+    "keyMap": {
+      "save": {
+        "keyCode": "ESCAPE",
+        "action": "CLICK"
+      },
+      "pause": {
+        "keyCode": "R",
+        "action": "CLICK"
+      }
+    },
+    "asteroidConfig": {
+      "spawnProbs": 500,
+      "size": 5
+    }
+  },
+  "players": [
+    {
+      "id": "starship1",
+      "lives": 3,
+      "color": "red",
+      "keyMap": {
+        "accelerate": {
+          "keyCode": "W",
+          "action": "MAINTAIN"
+        },
+        "stop": {
+          "keyCode": "S",
+          "action": "MAINTAIN"
+        },
+        "turnLeft": {
+          "keyCode": "A",
+          "action": "MAINTAIN"
+        },
+        "turnRight": {
+          "keyCode": "D",
+          "action": "MAINTAIN"
+        },
+        "shoot": {
+          "keyCode": "Q",
+          "action": "CLICK"
+        }
+      },
+      "gun": {
+        "damage": 1,
+        "bullets": 1
+      }
+    }
+  ]
+}

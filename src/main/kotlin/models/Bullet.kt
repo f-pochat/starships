@@ -3,14 +3,14 @@ package models
 data class Bullet(
     val bulletId: String,
     val position: Position,
-    val damage: Int,
+    val damage: Double,
     val movementVector: MovementVector
-) : Collidable, Movable {
+) : Movable, Collidable {
     override fun collide(collider: Collidable): Bullet {
-        return this // Check how to do to delete the bullet
+        return this
     }
 
-    override fun move(deltaTime: Double): Movable = copy(position = position.move(movementVector, deltaTime))
+    override fun move(deltaTime: Double): Bullet = copy(position = position.move(movementVector, deltaTime))
     override fun getId(): String {
         return bulletId
     }

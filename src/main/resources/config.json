@@ -1,0 +1,29 @@
+{
+  "config": {
+    "keyMap": {
+      "P": "pause",
+      "S": "save"
+    },
+    "asteroid": {
+      "perMinute": 6,
+      "size": 3
+    }
+  },
+  "players": [
+    {
+      "starship1": {
+        "lives": 1,
+        "keyMap": {
+          "UP": "accelerate",
+          "DOWN": "stop",
+          "LEFT": "turnLeft",
+          "RIGHT": "turnRight"
+        },
+        "gun": {
+          "bullets": 1,
+          "damage": 1
+        }
+      }
+    }
+  ]
+}

@@ -3,21 +3,22 @@ package models
 data class Starship(
     val starshipId: String,
     val position: Position,
-    val lives: Int,
+    val color: String,
+    val lives: Double,
     val movementVector: MovementVector,
-    val gun: Gun
+    val damage: Double,
+    val bullets: Int
 ) : Movable, Collidable {
 
     fun accelerate(): Starship = copy(movementVector = movementVector.accelerate())
     fun stop(): Starship = copy(movementVector = movementVector.stop())
     fun turnLeft(): Starship = copy(movementVector = movementVector.turnLeft())
     fun turnRight(): Starship = copy(movementVector = movementVector.turnRight())
-//    fun shoot(): Starship = copy(gun = gun.shoot(position, movementVector))
 
     override fun collide(collider: Collidable): Starship {
         return when (collider) {
-            is Asteroid -> copy(movementVector = movementVector.fullStop())
-            is Bullet -> copy(lives = lives - collider.damage)
+            is Asteroid -> copy(movementVector = movementVector.fullStop(), lives = lives - 1)
+            is Bullet -> this
             is Starship -> this
             else -> this
         }

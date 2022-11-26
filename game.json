@@ -1,0 +1,143 @@
+{
+  "state": "PLAY",
+  "starships": [
+    {
+      "starshipId": "starship1",
+      "position": {
+        "x": 381.0,
+        "y": 236.69364230447536
+      },
+      "color": "original",
+      "lives": 3.0,
+      "movementVector": {
+        "speed": 155.0,
+        "rotation": 180.0
+      },
+      "damage": 1.0,
+      "bullets": 3
+    },
+    {
+      "starshipId": "starship2",
+      "position": {
+        "x": 549.3533723306557,
+        "y": 199.86589525177226
+      },
+      "color": "original",
+      "lives": 3.0,
+      "movementVector": {
+        "speed": 70.0,
+        "rotation": 107.0
+      },
+      "damage": 1.0,
+      "bullets": 3
+    }
+  ],
+  "keyMapHandler": {
+    "playerKeyMap": [
+      {
+        "first": "starship1",
+        "second": {
+          "accelerate": {
+            "keyCode": "W",
+            "action": "MAINTAIN"
+          },
+          "stop": {
+            "keyCode": "S",
+            "action": "MAINTAIN"
+          },
+          "turnLeft": {
+            "keyCode": "A",
+            "action": "MAINTAIN"
+          },
+          "turnRight": {
+            "keyCode": "D",
+            "action": "MAINTAIN"
+          },
+          "shoot": {
+            "keyCode": "Q",
+            "action": "CLICK"
+          }
+        }
+      },
+      {
+        "first": "starship2",
+        "second": {
+          "accelerate": {
+            "keyCode": "UP",
+            "action": "MAINTAIN"
+          },
+          "stop": {
+            "keyCode": "DOWN",
+            "action": "MAINTAIN"
+          },
+          "turnLeft": {
+            "keyCode": "LEFT",
+            "action": "MAINTAIN"
+          },
+          "turnRight": {
+            "keyCode": "RIGHT",
+            "action": "MAINTAIN"
+          },
+          "shoot": {
+            "keyCode": "SPACE",
+            "action": "CLICK"
+          }
+        }
+      }
+    ],
+    "gameKeyMap": {
+      "save": {
+        "keyCode": "ESCAPE",
+        "action": "CLICK"
+      },
+      "pause": {
+        "keyCode": "R",
+        "action": "CLICK"
+      }
+    }
+  },
+  "asteroidConfig": {
+    "spawnProbs": 493.3100000000061,
+    "size": 5.0
+  },
+  "bullets": [],
+  "asteroids": [
+    {
+      "asteroidId": "asteroid-253",
+      "size": 5.0,
+      "position": {
+        "x": 516.5395686858471,
+        "y": 642.2931271068859
+      },
+      "movementVector": {
+        "speed": 100.0,
+        "rotation": 348.0
+      }
+    },
+    {
+      "asteroidId": "asteroid-257",
+      "size": 5.0,
+      "position": {
+        "x": 534.1709321092728,
+        "y": 529.2871966414115
+      },
+      "movementVector": {
+        "speed": 100.0,
+        "rotation": 16.0
+      }
+    },
+    {
+      "asteroidId": "asteroid-243",
+      "size": 5.0,
+      "position": {
+        "x": 154.3247923588966,
+        "y": 136.3708463797135
+      },
+      "movementVector": {
+        "speed": 100.0,
+        "rotation": 81.0
+      }
+    }
+  ],
+  "score": 0
+}

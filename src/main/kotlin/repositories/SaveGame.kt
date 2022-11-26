@@ -1,11 +1,17 @@
 package repositories
 
 import com.google.gson.Gson
-import models.GameState
+import services.GameService
 import java.io.File
+import java.io.FileReader
 
-private fun saveRound(game: GameState): GameState {
+fun saveRound(game: GameService): GameService {
     val gson = Gson()
-    File("../../resources/game.txt").writeText(gson.toJson(game))
+    File("game.json").writeText(gson.toJson(game))
     return game
+}
+
+fun readSavedGame(): GameService {
+    val gson = Gson()
+    return gson.fromJson(FileReader("game.json"), GameService::class.java)
 }
